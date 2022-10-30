@@ -10,22 +10,17 @@ public class AiKaSensor : MonoBehaviour
     
 
     bool enemyInside;
+    public bool playerTooFar = false;
 
     [Header("Detector")]
     //[SerializeField] float chaseRadious = 20f;
     [SerializeField]LayerMask layerMask;
     [SerializeField] SphereCollider rangeDetector;
 
-    [Header("Enemies Detected")]
+    [Header("Enemy List")]
     List<Transform> enemies = new List<Transform>();
 
     public static List<Transform> wonderPoints = new List<Transform>();
-
-
-    void Update()
-    {
-        
-    }
 
 
     private void FixedUpdate()
@@ -45,21 +40,21 @@ public class AiKaSensor : MonoBehaviour
                 if (Vector3.Dot(toAiKa.normalized, transform.forward) >
                   Mathf.Cos(detectionAngle * 0.5f * Mathf.Deg2Rad))
                 {
-                    Debug.Log("Player detected inside");
+                    Debug.Log("Enemy detected inside");
                     enemyInside = true;
                 }
                 else
                 {
                     enemyInside = false;
                     //ia.MoveToPoints();
-                    Debug.Log("Esta fuera de rango");
+                    Debug.Log("El enemigo esta fuera de rango");
                 }
             }
             else
             {
                 enemyInside = false;
                 //ia.MoveToPoints();
-                Debug.Log("Ya no lo veo");
+                Debug.Log("Ya no lo veo al enemigo");
             }
 
         }
@@ -85,6 +80,11 @@ public class AiKaSensor : MonoBehaviour
             wonderPoints.Add(other.transform);
 
         }
+
+        if(other.tag == "Player")
+        {
+            playerTooFar = false;
+        }
         
     }
 
@@ -99,6 +99,11 @@ public class AiKaSensor : MonoBehaviour
         if (other.tag == "WonderPoints")
         {
             wonderPoints.Remove(other.transform);
+        }
+
+        if(other.tag == "Player")
+        {
+            playerTooFar = true;
         }
 
         if (enemies.Count == 0)

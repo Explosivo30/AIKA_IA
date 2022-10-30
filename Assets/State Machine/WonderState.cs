@@ -21,6 +21,7 @@ public class WonderState : State
     {
         navmesh = GetComponent<NavMeshAgent>();
         sensor = GetComponent<AiKaSensor>();
+        idleState = GetComponent<IdleState>();
         
     }
     public override State RunCurrentState()
