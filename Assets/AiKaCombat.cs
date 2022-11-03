@@ -60,9 +60,6 @@ public class AiKaCombat : MonoBehaviour
     void PlatformSpawn()
     {
         Instantiate(platformPlacer,new Vector3(playerPrediction.position.x,playerPrediction.position.y - 1.3f, playerPrediction.position.z), Quaternion.identity);
-
-
-        
     }
 
     #endregion

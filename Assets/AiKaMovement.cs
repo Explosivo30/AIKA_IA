@@ -20,13 +20,13 @@ public class AiKaMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Move(player.position);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
         
     }
 
