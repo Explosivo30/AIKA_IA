@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class CombatState : State
 {
+
+    [SerializeField] Rigidbody objectToInstantiate;
+    [SerializeField] GameObject platformPlacer;
+    [SerializeField] Transform playerPrediction;
+    float h = 5;
+    float gravity = -18;
+
+    Rigidbody objectInstantiation;
+    [SerializeField] Transform player;
     AiKaSensor sensor;
-    ReturnPlayerState returnPlayer;
+    FollowPlayerState returnPlayer;
 
     private void Awake()
     {

@@ -9,7 +9,7 @@ public class WonderState : State
     CombatState combatState;
     [SerializeField] Player player;
     NavMeshAgent navmesh;
-    ReturnPlayerState returnPlayer;
+    FollowPlayerState returnPlayer;
     
     AiKaSensor sensor;
 

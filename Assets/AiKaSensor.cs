@@ -9,7 +9,8 @@ public class AiKaSensor : MonoBehaviour
     [SerializeField] float detectionAngle = 90f;
     
 
-    bool enemyInside;
+    public bool enemyInside;
+    public bool enemySeen;
     public bool playerTooFar = false;
 
     [Header("Detector")]
@@ -40,29 +41,24 @@ public class AiKaSensor : MonoBehaviour
                 if (Vector3.Dot(toAiKa.normalized, transform.forward) >
                   Mathf.Cos(detectionAngle * 0.5f * Mathf.Deg2Rad))
                 {
-                    Debug.Log("Enemy detected inside");
-                    enemyInside = true;
+                    Debug.Log("Enemy seen");
+                    enemySeen = true;
                 }
                 else
                 {
-                    enemyInside = false;
-                    //ia.MoveToPoints();
+                    enemySeen = false;
                     Debug.Log("El enemigo esta fuera de rango");
                 }
             }
             else
             {
-                enemyInside = false;
                 //ia.MoveToPoints();
                 Debug.Log("Ya no lo veo al enemigo");
             }
 
         }
         /*
-         
         
-        
-       
         */
     }
 

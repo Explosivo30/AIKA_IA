@@ -6,7 +6,7 @@ public class IdleState : State
 {
     WonderState wonderState;
     public bool canSeePlayer;
-    ReturnPlayerState returnPlayer;
+    FollowPlayerState returnPlayer;
     public override State RunCurrentState()
     {
         //TODO If player is stopped 
