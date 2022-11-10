@@ -5,7 +5,6 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     State currentState;
-    
     private void Update()
     {
         RunStateMachine();
@@ -20,6 +19,7 @@ public class StateManager : MonoBehaviour
             //Switch to next state
             SwitchToTheNextState(nextState);
         }
+
     }
 
     void SwitchToTheNextState(State nextState)

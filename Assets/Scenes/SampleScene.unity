@@ -587,7 +587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009993390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.9, y: 1.15, z: -13.8}
+  m_LocalPosition: {x: 3.6, y: 1.15, z: 37.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -947,12 +947,13 @@ GameObject:
   - component: {fileID: 1880151869}
   - component: {fileID: 1880151874}
   - component: {fileID: 1880151875}
-  - component: {fileID: 1880151876}
   - component: {fileID: 1880151877}
   - component: {fileID: 1880151878}
   - component: {fileID: 1880151881}
   - component: {fileID: 1880151880}
   - component: {fileID: 1880151879}
+  - component: {fileID: 1880151882}
+  - component: {fileID: 1880151883}
   m_Layer: 0
   m_Name: AI'KA
   m_TagString: Untagged
@@ -973,8 +974,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 200
+  m_StoppingDistance: 0.53
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1061,6 +1062,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRadious: 23.68
   detectionAngle: 90
+  enemyInside: 0
+  enemySeen: 0
   playerTooFar: 0
   layerMask:
     serializedVersion: 2
@@ -1079,19 +1082,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 30
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1880151876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880151868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d3528ceeb98a5745bf06b4a04fbaff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1263431377}
 --- !u!54 &1880151877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1136,6 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34821933b58f464497e8ae59e37e23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1263431377}
 --- !u!114 &1880151880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,7 +1139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c17aadd341870d47a662738c0079514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canSeePlayer: 0
+  player: {fileID: 1263431377}
+  closeToPlayer: 0
 --- !u!114 &1880151881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,7 +1153,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99308454e195324d89b3cc155f78552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1263431378}
+  player: {fileID: 1263431377}
+--- !u!114 &1880151882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880151868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45102076e453dff488cdeaaaa6a16680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1263431377}
+  enemyDetected: 0
+--- !u!114 &1880151883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880151868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fd767913a534542aa003949424f91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1966488726
 PrefabInstance:
   m_ObjectHideFlags: 0

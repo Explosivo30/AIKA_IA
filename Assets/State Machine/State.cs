@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class State : MonoBehaviour
 {
+    public Transform player;
     public abstract State RunCurrentState(); 
 }

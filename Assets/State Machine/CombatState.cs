@@ -4,39 +4,27 @@ using UnityEngine;
 
 public class CombatState : State
 {
-
-    [SerializeField] Rigidbody objectToInstantiate;
-    [SerializeField] GameObject platformPlacer;
-    [SerializeField] Transform playerPrediction;
-    float h = 5;
-    float gravity = -18;
-
-    Rigidbody objectInstantiation;
-    [SerializeField] Transform player;
     AiKaSensor sensor;
-    FollowPlayerState returnPlayer;
+    float aiKaProtection = 1;
+    bool noEnemiesInside = false;
+    public override State RunCurrentState()
+    {
+        Debug.Log("Running combat STATE");
+        return this;
+        
+    }
 
     private void Awake()
     {
         sensor = GetComponent<AiKaSensor>();
     }
 
-
-
-    public override State RunCurrentState()
-    {
-
-        if(sensor.playerTooFar == false)
-        {
-            return returnPlayer;
-        }
-
-        return this;
-    }
-
     private void Update()
     {
-        RunCurrentState();
+        if(aiKaProtection > 0)
+        {
+
+        }
     }
 
 

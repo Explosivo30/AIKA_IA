@@ -3,41 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FollowPlayerState : State
+public class ReturnPlayerState : State
 {
-    public bool enemyDetected;
+    public bool enemyDetected = false;
     AiKaSensor sensor;
     CombatState combatState;
     NavMeshAgent aika;
     State state;
-    
     public override State RunCurrentState()
     {
-        Debug.Log("EnemyDetected es " + enemyDetected);
-        if(enemyDetected == true)
+        if (enemyDetected == true)
         {
-            Debug.Log("vamos al combat state");
             return combatState;
         }
-        else
-        {
-            Debug.Log("Estoy en Follow Player");
-            return this;
-        }
-        
+        Debug.Log("Estoy en Follow Player");
+        return this;
     }
 
     private void Awake()
     {
-        combatState = GetComponent<CombatState>();
-        sensor = GetComponent<AiKaSensor>();
         state = GetComponent<State>();
         aika = GetComponent<NavMeshAgent>();
+        sensor = GetComponent<AiKaSensor>();
     }
 
     void Update()
     {
-       
         aika.SetDestination(player.position);
     }
 
@@ -59,9 +50,8 @@ public class FollowPlayerState : State
             Debug.Log("Undetected Enemy");
             enemyDetected = false;
         }
+
         RunCurrentState();
     }
 
-
-    
 }

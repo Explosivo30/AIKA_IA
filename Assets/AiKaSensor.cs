@@ -41,7 +41,7 @@ public class AiKaSensor : MonoBehaviour
                 if (Vector3.Dot(toAiKa.normalized, transform.forward) >
                   Mathf.Cos(detectionAngle * 0.5f * Mathf.Deg2Rad))
                 {
-                    Debug.Log("Enemy seen");
+                    
                     enemySeen = true;
                 }
                 else

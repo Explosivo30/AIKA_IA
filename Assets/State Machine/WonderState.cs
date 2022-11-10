@@ -7,11 +7,12 @@ public class WonderState : State
 {
     IdleState idleState;
     CombatState combatState;
-    [SerializeField] Player player;
     NavMeshAgent navmesh;
-    FollowPlayerState returnPlayer;
-    
+    ReturnPlayerState returnPlayer;
     AiKaSensor sensor;
+    State state;
+    FollowPlayerState followPlayer;
+    
 
     bool farFromPlayer = false;
 
@@ -19,25 +20,30 @@ public class WonderState : State
 
     private void Awake()
     {
+        state = GetComponent<State>();
         navmesh = GetComponent<NavMeshAgent>();
         sensor = GetComponent<AiKaSensor>();
-        idleState = GetComponent<IdleState>();
-        
     }
     public override State RunCurrentState()
     {
-        if (!idleState.canSeePlayer)
-        {
-            return combatState;
-        }
+        //If she is wondering the player has to let you know he's being attacked to enter combat
+        
 
         if(farFromPlayer == true)
         {
             farFromPlayer = false;
             return returnPlayer;
         }
-
+        else if(sensor.enemyInside)
+        {
+            return followPlayer;
+        }
+        else
+        {
+            Debug.Log("Running WONDER STATE");
             return this;
+        }
+        
     }
 
     private void Update()
@@ -62,7 +68,9 @@ public class WonderState : State
             }
         }
 
-        if (Vector3.Distance(transform.position, player.transform.position) > 10f)
+        
+
+        if (Vector3.Distance(transform.position, state.player.transform.position) > 50f)
         {
             farFromPlayer = true;
         }
