@@ -5,15 +5,15 @@ using UnityEngine;
 public class EnemyFOV : MonoBehaviour
 {
     [SerializeField] float detectionRadious = 10f;
-    [SerializeField] float ChaseRadious = 20f;
     [SerializeField] float detectionAngle = 90f;
-    Transform enemySeen;
+    [SerializeField] float ChaseRadious = 20f;
+    
+    Transform playerSeen;
     public bool playerInside = false;
-    IABehaviour ia;
 
     private void Awake()
     {
-        ia = GetComponent<IABehaviour>();
+        
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class EnemyFOV : MonoBehaviour
     private void LookForPlayer()
     {
         Vector3 enemyPos = transform.position;
-        Vector3 toPlayer = enemySeen.transform.position - enemyPos;
+        Vector3 toPlayer = playerSeen.transform.position - enemyPos;
         toPlayer.y = 0;
         if(toPlayer.magnitude <= detectionRadious)
         {
@@ -44,13 +44,13 @@ public class EnemyFOV : MonoBehaviour
             else
             {
                 playerInside = false;
-                ia.MoveToPoints();
+                //ia.MoveToPoints();
                 Debug.Log("Esta fuera de rango");
             }
         }else
         {
             playerInside = false;
-            ia.MoveToPoints();
+            //ia.MoveToPoints();
             Debug.Log("Ya no lo veo");
         }
         
