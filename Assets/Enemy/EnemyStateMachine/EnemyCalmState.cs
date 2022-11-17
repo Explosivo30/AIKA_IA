@@ -9,8 +9,10 @@ public class EnemyCalmState : EnemyState
     [SerializeField] EnemyAlertState enemyAlert;
     [SerializeField]EnemyFOV enemyFOV;
     bool pathEnded;
-    [SerializeField] float totalTimer;
+
     float currentTimer;
+
+    List<Transform> pathPoints = new List<Transform>();
     
 
     private void Awake()
@@ -51,7 +53,7 @@ public class EnemyCalmState : EnemyState
 
     void PathPoints()
     {
-
+        
     }
 
     void IdleEnemy()
