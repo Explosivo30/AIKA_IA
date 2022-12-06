@@ -8,7 +8,7 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField] float detectionAngle = 90f;
     [SerializeField] float ChaseRadious = 20f;
     
-    Transform playerSeen;
+    [SerializeField] Transform playerSeen;
     public bool playerInside = false;
 
     private void Awake()

@@ -1,30 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyCalmState : EnemyState
 {
-    [SerializeField] bool seenDeadBody = false;
     [SerializeField] bool seenPlayer = false;
     [SerializeField] EnemyAlertState enemyAlert;
-    [SerializeField]EnemyFOV enemyFOV;
-    bool pathEnded;
+    [SerializeField] EnemyFOV enemyFOV;
+    NavMeshAgent navMeshAgent;
+    bool pathEnded = false;
+
+    float threshold = .3f;
 
     float currentTimer;
 
-    List<Transform> pathPoints = new List<Transform>();
+    [SerializeField] Transform pathPoints;
+    int pathCount = 0;
     
 
     private void Awake()
     {
         enemyFOV = GetComponentInParent<EnemyFOV>();
+        navMeshAgent = GetComponentInParent<NavMeshAgent>();
     }
     public override EnemyState RunCurrentState()
     {
-        if (seenDeadBody == true || seenPlayer == true)
+        if (seenPlayer == true)
         {
             seenPlayer = false;
-            seenDeadBody = false;
             return enemyAlert;
         }
         else
@@ -32,7 +36,6 @@ public class EnemyCalmState : EnemyState
             EnemyCalmUpdate();
             return this;
         }
-        
     }
 
     void EnemyCalmUpdate()
@@ -53,12 +56,27 @@ public class EnemyCalmState : EnemyState
 
     void PathPoints()
     {
-        
+        navMeshAgent.isStopped = false;
+        if (Vector3.Distance(transform.position,pathPoints.GetChild(pathCount).transform.position) < threshold)
+        {
+            pathCount= Random.Range(0, pathPoints.childCount);
+            Debug.Log("El nuevo pathcount es "+pathCount);
+
+            if (pathCount > pathPoints.childCount)
+            {
+                pathCount = 0;
+            }
+
+        }
+        navMeshAgent.SetDestination(pathPoints.GetChild(pathCount).transform.position);
     }
 
     void IdleEnemy()
     {
-
+        navMeshAgent.isStopped = true;
+        //despues de un tiempo volverlo a poner a false.
+        pathEnded = false;
+        
     }
 
 }
