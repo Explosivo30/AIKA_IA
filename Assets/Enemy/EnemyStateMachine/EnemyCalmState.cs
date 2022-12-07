@@ -5,9 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyCalmState : EnemyState
 {
-    [SerializeField] bool seenPlayer = false;
+    [SerializeField] bool seenDeadBody = false;
     [SerializeField] EnemyAlertState enemyAlert;
     [SerializeField] EnemyFOV enemyFOV;
+    [SerializeField] EnemyAgressiveState enemyAgressive;
     NavMeshAgent navMeshAgent;
     bool pathEnded = false;
 
@@ -26,9 +27,12 @@ public class EnemyCalmState : EnemyState
     }
     public override EnemyState RunCurrentState()
     {
-        if (seenPlayer == true)
+        if (enemyFOV.GetPlayerInside()== true)
         {
-            seenPlayer = false;
+            return enemyAgressive;
+        }
+        else if(seenDeadBody == true)
+        {
             return enemyAlert;
         }
         else

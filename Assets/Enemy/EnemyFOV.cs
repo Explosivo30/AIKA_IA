@@ -72,4 +72,13 @@ public class EnemyFOV : MonoBehaviour
 
     }
 
+
+    public bool GetPlayerInside()
+    {
+        return playerInside;
+    }
+
+
+
+
 }

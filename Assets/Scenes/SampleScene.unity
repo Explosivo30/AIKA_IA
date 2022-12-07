@@ -167,9 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82541bb9eb1cddd4895ebb618e254d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seenPlayer: 0
+  seenDeadBody: 0
   enemyAlert: {fileID: 2116749827}
   enemyFOV: {fileID: 120364368}
+  enemyAgressive: {fileID: 628712021}
   pathPoints: {fileID: 1799897697}
 --- !u!1 &120364361
 GameObject:
