@@ -29,6 +29,8 @@ public class EnemyCalmState : EnemyState
     {
         if (enemyFOV.GetPlayerInside()== true)
         {
+            navMeshAgent.isStopped = true;
+            
             return enemyAgressive;
         }
         else if(seenDeadBody == true)

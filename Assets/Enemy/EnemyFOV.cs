@@ -6,24 +6,30 @@ public class EnemyFOV : MonoBehaviour
 {
     [SerializeField] float detectionRadious = 10f;
     [SerializeField] float detectionAngle = 90f;
-    [SerializeField] float ChaseRadious = 20f;
+    [SerializeField] float chaseRadious = 20f;
     
     [SerializeField] Transform playerSeen;
     public bool playerInside = false;
+    SphereCollider sphereCollider;
+
+    bool playerInChaseRange = false;
+
 
     private void Awake()
     {
-        
+        sphereCollider = GetComponent<SphereCollider>();
+
+        sphereCollider.radius = chaseRadious;
     }
 
     // Update is called once per frame
     void Update()
     {
-        LookForPlayer();
+        
     }
     private void FixedUpdate()
     {
-        
+        LookForPlayer();
     }
 
     private void LookForPlayer()
@@ -54,6 +60,10 @@ public class EnemyFOV : MonoBehaviour
             Debug.Log("Ya no lo veo");
         }
         
+
+
+
+
     }
 
     private void OnDrawGizmosSelected()
@@ -68,7 +78,7 @@ public class EnemyFOV : MonoBehaviour
         Color b = new Color(0.9f, 0.7f, 1f, 0.3f);
         UnityEditor.Handles.color = b;
 
-        UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.up, rotatedFordward, 360f, ChaseRadious);
+        UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.up, rotatedFordward, 360f, chaseRadious);
 
     }
 
@@ -78,7 +88,20 @@ public class EnemyFOV : MonoBehaviour
         return playerInside;
     }
 
+    public Transform GetPlayerPos()
+    {
+        return playerSeen;
+    }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Algo entro");
+        if (other.transform.CompareTag("Player"))
+        {
+            Debug.Log("El player entro");
+        }
+    }
 
 
 }

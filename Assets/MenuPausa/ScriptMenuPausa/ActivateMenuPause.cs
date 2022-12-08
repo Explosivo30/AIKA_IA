@@ -24,7 +24,7 @@ public class ActivateMenuPause : MonoBehaviour
         
         if(pauseMenu.activeInHierarchy == false)
         {
-            Debug.Log("DEVOLVEMOS EL TIEMPO");
+            //Debug.Log("DEVOLVEMOS EL TIEMPO");
             pauseMenu.SetActive(false);
             menuPauseIsActive = false;
         }
