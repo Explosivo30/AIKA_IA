@@ -44,26 +44,21 @@ public class EnemyFOV : MonoBehaviour
             if (Vector3.Dot(toPlayer.normalized, transform.forward) >
                      Mathf.Cos(detectionAngle * 0.5f * Mathf.Deg2Rad))
             {
-                Debug.Log("Player detected inside");
+                //Debug.Log("Player detected inside");
                 playerInside = true;
             }
             else
             {
                 playerInside = false;
                 //ia.MoveToPoints();
-                Debug.Log("Esta fuera de rango");
+                //Debug.Log("Esta fuera de rango");
             }
         }else
         {
             playerInside = false;
             //ia.MoveToPoints();
-            Debug.Log("Ya no lo veo");
+            //Debug.Log("Ya no lo veo");
         }
-        
-
-
-
-
     }
 
     private void OnDrawGizmosSelected()
@@ -88,7 +83,7 @@ public class EnemyFOV : MonoBehaviour
         return playerInside;
     }
 
-    public Transform GetPlayerPos()
+    public Transform GetPlayerTransform()
     {
         return playerSeen;
     }
@@ -96,12 +91,19 @@ public class EnemyFOV : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Algo entro");
         if (other.transform.CompareTag("Player"))
         {
-            Debug.Log("El player entro");
+            playerInChaseRange = true;
         }
     }
 
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            playerInChaseRange = false;
+        }
+    }
 
 }
