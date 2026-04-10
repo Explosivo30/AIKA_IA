@@ -107,7 +107,7 @@ public class AiKaSensor : MonoBehaviour
             enemyInside = false;
         }
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Color c = new Color(0.2f, 0.9f, 0.9f, 0.4f);
@@ -122,4 +122,5 @@ public class AiKaSensor : MonoBehaviour
         UnityEditor.Handles.color = b;
         UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.up, rotatedFordward, 360f, rangeDetector.radius);
     }
+#endif
 }
