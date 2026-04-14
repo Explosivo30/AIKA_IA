@@ -404,8 +404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: 4
   chunks: 300
-  density: 1
-  internalStrength: 1
+  density: 150
+  internalStrength: 150
   insideMaterial: {fileID: 2100000, guid: 55162ad2422d980459302b0ec10a20da, type: 2}
   outsideMaterial: {fileID: 2100000, guid: 3b0599fb311427942b439217ca238367, type: 2}
 --- !u!4 &44452261
@@ -5760,6 +5760,7 @@ GameObject:
   - component: {fileID: 2136614987}
   - component: {fileID: 2136614986}
   - component: {fileID: 2136614989}
+  - component: {fileID: 2136614990}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5807,7 +5808,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5846,6 +5847,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyCode: 104
   container: {fileID: 427716625}
+--- !u!114 &2136614990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136614985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1d33ea7617fec44952adcdbf29f8ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  performanceText: {fileID: 0}
+  refreshRate: 0.5
+  goodColor: {r: 0, g: 1, b: 0, a: 1}
+  warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  badColor: {r: 1, g: 0, b: 0, a: 1}
+  warningFPS: 50
+  badFPS: 30
 --- !u!1 &1017753748921270135
 GameObject:
   m_ObjectHideFlags: 0
